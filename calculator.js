@@ -1,5 +1,7 @@
-let resultsArray = [];
+let resultsArray = []; // declare array for calculation history
 
+
+// Arithmetic functions
 function add(num1, num2) {
     let res = num1 + num2;
     resultsArray.unshift(createResultObject(num1, num2, "+", res));
@@ -24,6 +26,7 @@ function divide(num1, num2) {
     }
 }
 
+// Creates a calculation object to be stored in resultsArray
 function createResultObject(operand1, operand2, operator, result) {
     let obj = {
         operands: [operand1, operand2],
@@ -33,6 +36,7 @@ function createResultObject(operand1, operand2, operator, result) {
     return obj;
 }
 
+// Handles clicks on the operator buttons
 function processClick(choice) {
     document.querySelector("#error").innerText = "";
     let num1 = Number(document.querySelector("#firstNum").value);
@@ -70,6 +74,8 @@ document.querySelector("#multiply").addEventListener("click", function() {
 document.querySelector("#divide").addEventListener("click", function() {
     processClick("divide");
 });
+
+// Displays the history in reverse chronological order, or a message if there is no history
 document.querySelector("#showHistory").addEventListener("click", function() {
     if (resultsArray.length > 1) {
         document.querySelector("#history p").innerText = "";
